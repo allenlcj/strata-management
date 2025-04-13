@@ -1,0 +1,27 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/next"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/documents",
+      "dest": "/api/documents.js"
+    },
+    {
+      "src": "/old-announcements",
+      "status": 301,
+      "headers": { "Location": "/announcements" }
+    }
+  ],
+  "regions": ["syd1"],
+  "crons": [
+    {
+      "path": "/api/send-reminders",
+      "schedule": "0 9 * * 1"
+    }
+  ]
+}
